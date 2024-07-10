@@ -6,8 +6,8 @@
   "scripts": {
     "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fix": "eslint . --fix",
-    "postinstall": "prisma generate"
+    "build": "prisma generate && prisma migrate deploy",
+    "fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
