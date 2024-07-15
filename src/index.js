@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import prisma from "../prisma/prisma.js";
+import userRoutes from "./routes/userRoute.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,10 +12,12 @@ app.use(express.json());
 app.use(cors());
 
 // API routes
-app.get("/", async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
+
+app.get("/", (req, res) => {
+  res.send("Selamat datang di API ANDARA TV");
 });
+
+app.use("/v1", userRoutes);
 
 prisma
   .$connect()
