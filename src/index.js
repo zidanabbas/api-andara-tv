@@ -14,6 +14,15 @@ app.get("/", async (req, res) => {
   res.json(users);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+prisma
+  .$connect()
+  .then(() => {
+    console.log("connected to database");
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("error connecting to database", error);
+    process.exit(1);
+  });
