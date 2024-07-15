@@ -7,8 +7,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// Enable cors
 app.use(cors());
 
+// API routes
 app.get("/", async (req, res) => {
   const users = await prisma.user.findMany();
   res.json(users);
